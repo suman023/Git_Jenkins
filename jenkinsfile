@@ -17,5 +17,10 @@ pipeline {
            git 'https://github.com/hellokaton/java11-examples.git'
             }
         }
+        stage('creating package') {
+            steps {
+           sh 'mvn clean package'
+            }
+        }
     }
 }
