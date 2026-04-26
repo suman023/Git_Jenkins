@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('install maven') {
+        stage('install the maven') {
             steps {
             sh 'sudo apt install maven -y'
             }
@@ -20,6 +20,11 @@ pipeline {
         stage('creating package') {
             steps {
            sh 'mvn clean package'
+            }
+        }
+        stage('realease') {
+            steps {
+        archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
             }
         }
     }
