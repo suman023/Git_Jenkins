@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('install maven') {
+            steps {
+            sh 'sudo apt install maven -y'
+            }
+        }
+       stage('install jdk') {
+            steps {
+            sh 'sudo apt install openjdk-21-jdk -y'
+            }
+        }
+            stage('clone reposiotry') {
+            steps {
+           git 'https://github.com/hellokaton/java11-examples.git'
+            }
+        }
+    }
+}
