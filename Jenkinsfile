@@ -58,7 +58,11 @@ pipeline {
                 sh 'sudo docker push suman2304/javatest'
             }
         }
-
+stage('mailing') {
+            steps {
+	mail bcc: '', body: 'echo jobstatus ', cc: '', from: 'sumanshit023@gmail.com', replyTo: '', subject: 'Pipeline status', to: 'sumanshit023@gmail.com'
+        }
+ }
     }
 
     post {
