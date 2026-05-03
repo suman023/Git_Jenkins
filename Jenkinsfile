@@ -63,11 +63,7 @@ pipeline {
 stage('mailing') {
             steps {
 	mail bcc: '', body: 'echo jobstatus ', cc: '', from: 'sumanshit023@gmail.com', replyTo: '', subject: 'Pipeline status', to: 'sumanshit023@gmail.com'
-				slackSend(
-            channel: 'jenkinsslackwp',
-            color: '#FFFF00',
-            message: "Started: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] (${env.BUILD_URL})"
-        )
+slackSend channel: 'jenkinsslackwp', message: 'hello testing', teamDomain: 'jenkinsslackwp', tokenCredentialId: '6d881e6d-2c2f-4970-be0d-14c526b694d6'
         }
  }
     }
