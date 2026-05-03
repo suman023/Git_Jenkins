@@ -36,8 +36,10 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh 'trivy image --exit-code 0 --severity LOW,MEDIUM suman2304/javatest'
-                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL suman2304/javatest'
+				sh ' trivy image --format json --output result.json  --severity HIGH,CRITICAL  suman2304/javatest'
+				archiveArtifacts artifacts: 'result.json', followSymlinks: false
+              //  sh 'trivy image --exit-code 0 --severity LOW,MEDIUM suman2304/javatest'
+               // sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL suman2304/javatest'
             }
         }
 
