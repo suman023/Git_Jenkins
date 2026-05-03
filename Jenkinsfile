@@ -71,11 +71,10 @@ pipeline {
 
                 // ✅ Slack 
                 slackSend(
-                    channel: 'jenkinsslackwp',
-                    color: 'good',
-                    message: "✅ Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}",
-                    tokenCredentialId: '6d881e6d-2c2f-4970-be0d-14c526b694d6'
-                )
+            channel: '#jenkinsslackwp',
+            color: 'good',
+            message: "✅ Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
+        )
             }
         }
     }
