@@ -61,20 +61,18 @@ pipeline {
 
         stage('Notify') {
             steps {
-                // ✅ Email
                 mail(
                     to: 'sumanshit023@gmail.com',
-                    from: 'sumanshit023@gmail.com',
-                    subject: "Pipeline ${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: "Build Status: ${currentBuild.result}\nJob: ${env.JOB_NAME}\nBuild: ${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}"
+                    subject: "Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: "Build URL: ${env.BUILD_URL}"
                 )
 
-                // ✅ Slack 
+            
                 slackSend(
-            channel: '#jenkinsslackwp',
-            color: 'good',
-            message: "✅ Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
-        )
+                    channel: '#jenkinsslackwp',
+                    color: 'good',
+                    message: "✅ Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
+                )
             }
         }
     }
@@ -87,8 +85,7 @@ pipeline {
             slackSend(
                 channel: '#jenkinsslackwp',
                 color: 'danger',
-                message: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}",
-                tokenCredentialId: '6d881e6d-2c2f-4970-be0d-14c526b694d6'
+                message: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
             )
         }
     }
